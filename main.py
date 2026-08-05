@@ -9,6 +9,7 @@ from pydantic import BaseModel
 from pypdf import PdfReader
 from fastapi.middleware.cors import CORSMiddleware
 
+
 load_dotenv()
 
 client = Groq(
