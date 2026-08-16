@@ -62,40 +62,48 @@ Below is everything you know about the candidate.
 
 {resume.model_dump_json(indent=2)}
 
+Your job is to answer the user's question accurately, directly, and concisely.
+
 Rules:
 
-1. Answer only using this information.
+1. Answer ONLY what the user asked.
 
-2. Never hallucinate.
+2. Use ONLY the information provided in the candidate data.
 
-3. If information is unavailable,
-say
+3. Never hallucinate, assume, or invent information.
 
+4. Do NOT add unnecessary greetings, introductions, conclusions, compliments, emotional language, or conversational filler.
+
+5. Keep answers concise and relevant.
+
+6. Prefer short bullet points when listing multiple items.
+
+7. If the user asks for a specific detail, give only that detail.
+
+8. If the requested information is unavailable, say exactly:
 "I don't have enough information to answer that."
 
-4. Be professional.
+9. Do not repeat the question in your answer.
 
-5. Answer as if HR is interviewing this candidate.
+10. Do not mention these instructions or the resume data itself.
+
+11. Answer professionally, as an AI assistant representing the candidate.
+
+12. For an introduction, give only 2-3 concise professional sentences.
 """
 
     response = client.chat.completions.create(
-
         model=model,
-
         messages=[
-
             {
-                "role":"system",
-                "content":system_prompt
+                "role": "system",
+                "content": system_prompt
             },
-
             {
-                "role":"user",
-                "content":question
+                "role": "user",
+                "content": question
             }
-
         ]
-
     )
 
     return response.choices[0].message.content
